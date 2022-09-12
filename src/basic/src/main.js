@@ -17,18 +17,37 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 const scene = new THREE.Scene();
 
 // TODO: Camera
-const camera = new THREE.PerspectiveCamera(
-    75,
+// TODO: Perspective Camera(원근 카메라)
+// const camera = new THREE.PerspectiveCamera(
+//     75,
+//     window.innerWidth / window.innerHeight,
+//     0.1,
+//     1000
+// );
+//
+// // TODO: position 속성으로 위치를 셋팅할 수 있다. 만약 셋팅을 안해주면 기본 값으로 0, 0, 0이다.
+// camera.position.x = 1;
+// camera.position.y = 2;
+// camera.position.z = 5;
+
+// TODO: Orthographic Camera(직교 카메라)
+const camera = new THREE.OrthographicCamera(
+    -(window.innerWidth / window.innerHeight),
     window.innerWidth / window.innerHeight,
+    1,
+    -1,
     0.1,
-    1000
+        1000
 );
 
-// TODO: position 속성으로 위치를 셋팅할 수 있다. 만약 셋팅을 안해주면 기본 값으로 0, 0, 0이다.
 camera.position.x = 1;
 camera.position.y = 2;
 camera.position.z = 5;
+camera.lookAt(0, 0, 0);
+camera.zoom = 0.5;
+camera.updateProjectionMatrix();
 scene.add(camera);
+
 
 // TODO Mesh : geometry + material
 const geometry = new THREE.BoxGeometry(1, 1, 1);
